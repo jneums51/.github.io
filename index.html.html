@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Josh Neuman — Senior Product Manager</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;1,9..144,300;1,9..144,500&family=Nunito:wght@300;400;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sand: #f0f4f8;
+    --sand-dark: #e2ecf4;
+    --warm-dark: #0f2038;
+    --warm-mid: #3a5a7a;
+    --warm-light: #7aa2be;
+    --accent: #1a6fa8;
+    --accent2: #5ba3d0;
+    --accent-light: #e2f0f9;
+    --white: #f6fafd;
+    --card: #eaf3fa;
+    --border: #c8dcea;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: var(--sand);
+    color: var(--warm-dark);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 64px;
+    background: rgba(253,250,246,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo {
+    font-family: 'Nunito', sans-serif;
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--warm-dark);
+    letter-spacing: -0.3px;
+  }
+  .nav-links { display: flex; gap: 12px; list-style: none; align-items: center; }
+  .nav-links a {
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--warm-mid);
+    padding: 7px 14px;
+    border-radius: 30px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); background: var(--accent-light); }
+  .nav-cta {
+    background: var(--accent) !important;
+    color: white !important;
+  }
+  .nav-cta:hover { background: #bf5424 !important; }
+
+  /* ── HERO ── */
+  #hero {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 60px;
+    align-items: center;
+    padding: 90px 64px 80px;
+    max-width: 1160px;
+    margin: 0 auto;
+  }
+  .hero-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: var(--accent2);
+    color: var(--warm-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 6px 16px;
+    border-radius: 30px;
+    margin-bottom: 24px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #hero h1 {
+    font-family: 'Fraunces', serif;
+    font-size: 56px;
+    line-height: 1.1;
+    font-weight: 500;
+    color: var(--warm-dark);
+    margin-bottom: 22px;
+  }
+  #hero h1 em {
+    font-style: italic;
+    color: var(--accent);
+  }
+  #hero p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: var(--warm-mid);
+    font-weight: 300;
+    margin-bottom: 38px;
+    max-width: 480px;
+  }
+  .cta-row { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; }
+  .btn-warm {
+    background: var(--accent);
+    color: white;
+    padding: 14px 32px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background 0.2s, transform 0.15s;
+    box-shadow: 0 4px 16px rgba(212,98,42,0.25);
+  }
+  .btn-warm:hover { background: #bf5424; transform: translateY(-1px); }
+  .btn-outline {
+    border: 2px solid var(--border);
+    color: var(--warm-mid);
+    padding: 12px 28px;
+    border-radius: 40px;
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HERO CARD */
+  .hero-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    padding: 36px;
+    box-shadow: 0 12px 40px rgba(100,60,20,0.1);
+    position: relative;
+  }
+  .card-hello {
+    font-family: 'Fraunces', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: var(--warm-light);
+    margin-bottom: 18px;
+  }
+  .avatar-row {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 26px;
+    padding-bottom: 22px;
+    border-bottom: 1.5px solid var(--border);
+  }
+  .avatar {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #5ba3d0, #1a6fa8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Nunito', sans-serif;
+    font-size: 22px;
+    color: white;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .avatar-name { font-size: 17px; font-weight: 700; color: var(--warm-dark); }
+  .avatar-title { font-size: 13px; color: var(--warm-mid); margin-top: 3px; font-weight: 400; }
+  .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .stat {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-num {
+    font-family: 'Fraunces', serif;
+    font-size: 30px;
+    font-weight: 500;
+    color: var(--accent);
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: var(--warm-light);
+    margin-top: 6px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* ── SECTION SHARED ── */
+  .section-wrap {
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 80px 64px;
+  }
+  .section-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--accent);
+    margin-bottom: 12px;
+  }
+  .section-title {
+    font-family: 'Fraunces', serif;
+    font-size: 38px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    margin-bottom: 48px;
+    line-height: 1.15;
+  }
+  .divider {
+    border: none;
+    border-top: 1.5px solid var(--border);
+    margin: 0 64px;
+  }
+
+  /* ── ABOUT ── */
+  #about { background: var(--white); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .about-text p {
+    font-size: 16px;
+    line-height: 1.85;
+    color: var(--warm-mid);
+    font-weight: 300;
+    margin-bottom: 18px;
+  }
+  .about-text p:last-child { margin-bottom: 0; }
+  .about-text strong { color: var(--warm-dark); font-weight: 600; }
+  .about-highlights { display: flex; flex-direction: column; gap: 16px; }
+  .highlight-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 22px 24px;
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .highlight-icon {
+    font-size: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .highlight-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--warm-dark);
+    margin-bottom: 4px;
+  }
+  .highlight-desc {
+    font-size: 13px;
+    color: var(--warm-mid);
+    line-height: 1.6;
+    font-weight: 300;
+  }
+
+  /* ── EXPERIENCE ── */
+  #experience { background: var(--sand); }
+  .timeline { position: relative; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+  }
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 24px;
+    margin-bottom: 36px;
+    position: relative;
+  }
+  .timeline-item:last-child { margin-bottom: 0; }
+  .timeline-dot {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--card);
+    border: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    z-index: 1;
+  }
+  .timeline-dot.active {
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(212,98,42,0.15);
+  }
+  .timeline-dot.active::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: white;
+  }
+  .timeline-dot.past {
+    background: var(--white);
+    border: 2px solid var(--border);
+  }
+  .timeline-dot.past::after {
+    content: '';
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--warm-light);
+  }
+  .timeline-body {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 26px 28px;
+  }
+  .timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .timeline-role {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--warm-dark);
+  }
+  .timeline-date {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+  .timeline-company {
+    font-size: 14px;
+    color: var(--warm-mid);
+    font-weight: 600;
+    margin-bottom: 14px;
+  }
+  .timeline-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--warm-mid);
+    font-weight: 300;
+    margin-bottom: 16px;
+  }
+  .timeline-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: var(--sand);
+    border: 1px solid var(--border);
+    color: var(--warm-mid);
+    letter-spacing: 0.02em;
+  }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--white); }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .skill-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 18px;
+    padding: 26px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .skill-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(100,60,20,0.1);
+  }
+  .skill-card-icon { font-size: 28px; margin-bottom: 14px; }
+  .skill-card-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--warm-dark);
+    margin-bottom: 8px;
+  }
+  .skill-card-desc {
+    font-size: 13px;
+    color: var(--warm-mid);
+    line-height: 1.65;
+    font-weight: 300;
+  }
+
+  /* ── PROJECTS ── */
+  #projects { background: var(--sand); }
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+  }
+  .project-card {
+    background: var(--card);
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 32px;
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  .project-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 36px rgba(100,60,20,0.1);
+  }
+  .project-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+    background: linear-gradient(135deg, #ddeef8, var(--card));
+  }
+  .project-badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--accent);
+    background: var(--accent-light);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 14px;
+  }
+  .project-title {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    margin-bottom: 10px;
+    line-height: 1.25;
+  }
+  .project-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--warm-mid);
+    font-weight: 300;
+    margin-bottom: 20px;
+  }
+  .project-metrics {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  .metric {
+    text-align: center;
+  }
+  .metric-val {
+    font-family: 'Fraunces', serif;
+    font-size: 24px;
+    font-weight: 500;
+    color: var(--accent);
+    display: block;
+  }
+  .metric-label { font-size: 11px; color: var(--warm-light); font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* ── CONTACT ── */
+  #contact { background: #2e2e2e; }
+  #contact .section-eyebrow { color: rgba(255,255,255,0.5); }
+  #contact .section-title { color: white; }
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .contact-text p {
+    font-size: 17px;
+    line-height: 1.8;
+    color: rgba(255,255,255,0.65);
+    font-weight: 300;
+    margin-bottom: 36px;
+  }
+  .contact-links { display: flex; flex-direction: column; gap: 14px; }
+  .contact-link {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 14px;
+    padding: 18px 22px;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover {
+    background: rgba(255,255,255,0.1);
+    border-color: rgba(212,98,42,0.5);
+  }
+  .contact-link-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 10px;
+    background: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .contact-link-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: white;
+    margin-bottom: 2px;
+  }
+  .contact-link-sub {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    font-weight: 400;
+  }
+  .contact-quote {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 40px;
+    text-align: center;
+  }
+  .quote-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 80px;
+    color: var(--accent);
+    line-height: 0.6;
+    display: block;
+    margin-bottom: 24px;
+    opacity: 0.8;
+  }
+  .quote-text {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: white;
+    line-height: 1.5;
+    font-weight: 300;
+    margin-bottom: 24px;
+  }
+  .quote-attr {
+    font-size: 12px;
+    font-weight: 700;
+    color: rgba(255,255,255,0.4);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #222222;
+    padding: 28px 64px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  footer .logo {
+    font-family: 'Fraunces', serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.4);
+  }
+  footer p {
+    font-size: 12px;
+    color: rgba(255,255,255,0.25);
+    font-weight: 400;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .fade-up {
+    opacity: 0;
+    animation: fadeUp 0.7s ease forwards;
+  }
+  .fade-up:nth-child(1) { animation-delay: 0.1s; }
+  .fade-up:nth-child(2) { animation-delay: 0.25s; }
+  .fade-up:nth-child(3) { animation-delay: 0.4s; }
+  .fade-up:nth-child(4) { animation-delay: 0.55s; }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 900px) {
+    nav { padding: 18px 28px; }
+    #hero, .about-grid, .contact-grid { grid-template-columns: 1fr; gap: 40px; padding: 48px 28px; }
+    .section-wrap { padding: 60px 28px; }
+    .divider { margin: 0 28px; }
+    .skills-grid { grid-template-columns: 1fr 1fr; }
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card.featured { grid-column: span 1; grid-template-columns: 1fr; }
+    footer { flex-direction: column; gap: 8px; padding: 24px 28px; text-align: center; }
+    .nav-links { gap: 4px; }
+    .nav-links li:not(:last-child) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Josh Neuman</div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact" class="nav-cta">Say hello</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div>
+    <div class="hero-tag fade-up">✦ Senior Product Manager · Growth & Retention</div>
+    <h1 class="fade-up">I build products that <em>scale</em> — and teams that ship.</h1>
+    <p class="fade-up">Senior PM with a track record of turning complex problems into clear, shipped solutions. From self-serve client portals to AI-assisted prototyping — I move fast, align stakeholders, and deliver measurable impact.</p>
+    <div class="cta-row fade-up">
+      <a class="btn-warm" href="#experience">See my work</a>
+      <a class="btn-outline" href="#contact">Get in touch</a>
+    </div>
+  </div>
+  <div class="hero-card fade-up">
+    <div class="card-hello">Nice to meet you!</div>
+    <div class="avatar-row">
+      <div class="avatar">J</div>
+      <div>
+        <div class="avatar-name">Josh Neuman</div>
+        <div class="avatar-title">Senior PM · Omnidian · Growth & Platform</div>
+      </div>
+    </div>
+    <div class="stat-row">
+      <div class="stat">
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Years in PM</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">50%</div>
+        <div class="stat-label">Faster Resolution</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">70%</div>
+        <div class="stat-label">Shorter Sales Cycle</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">+42</div>
+        <div class="stat-label">NPS Points</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-wrap">
+    <div class="section-eyebrow">About Me</div>
+    <div class="section-title">The person behind the roadmap.</div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>Hi, I'm Josh — a Senior Product Manager with a track record of <strong>building scalable platforms and data-driven products</strong> across SaaS, edtech, and cleantech. I've spent the last decade turning messy, ambiguous problems into shipped solutions that move real metrics.</p>
+        <p>My work spans everything from defining capability planning frameworks and data infrastructure strategy to launching client-facing tools using AI-assisted rapid prototyping. I've consistently <strong>secured executive alignment</strong>, restructured delivery teams, and shipped products ahead of schedule.</p>
+        <p>Before moving into product, I spent years in customer success and digital marketing — which means I genuinely understand what clients need and how to translate that into product decisions that drive both retention and revenue.</p>
+        <p>I hold a <strong>BA from Penn State</strong> and have worked with clients ranging from Expedia and Zillow to 400+ university systems across the country.</p>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon">🎯</div>
+          <div>
+            <div class="highlight-title">Growth & Retention Focus</div>
+            <div class="highlight-desc">Deep experience improving activation, engagement, and retention metrics for SaaS products at scale.</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🔬</div>
+          <div>
+            <div class="highlight-title">Data-Informed Decisions</div>
+            <div class="highlight-desc">Comfortable in SQL, dashboards, and A/B testing frameworks — always asking "what does the data say?"</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🤝</div>
+          <div>
+            <div class="highlight-title">Cross-Functional Leader</div>
+            <div class="highlight-desc">Known for bringing teams together around a shared vision and moving quickly without losing alignment.</div>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon">🚀</div>
+          <div>
+            <div class="highlight-title">0→1 & Scale Experience</div>
+            <div class="highlight-desc">Launched products from scratch and scaled existing ones — comfortable with ambiguity at every stage.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Work Experience</div>
+    <div class="section-title">Where I've been, what I've built.</div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <div class="timeline-dot active"></div>
+        <div class="timeline-body">
+          <div class="timeline-header">
+            <div class="timeline-role">Senior Product Manager</div>
+            <div class="timeline-date">July 2024 – Present</div>
+          </div>
+          <div class="timeline-company">Omnidian · Full-time</div>
+          <div class="timeline-desc">Defined Omnidian's first capability planning framework across 5 strategic focus areas. Established the Client Portal as the primary client engagement platform, shifting toward scalable self-serve workflows and reducing service resolution times by 50%. Restructured product delivery across six pods and delivered a client-facing AI-assisted task management tool that reduced manual tracking effort by 30%.</div>
+          <div class="timeline-tags">
+            <span class="tag">Platform Strategy</span>
+            <span class="tag">Self-Serve</span>
+            <span class="tag">Data Infrastructure</span>
+            <span class="tag">AI Prototyping</span>
+            <span class="tag">Executive Alignment</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot past"></div>
+        <div class="timeline-body">
+          <div class="timeline-header">
+            <div class="timeline-role">Product Manager</div>
+            <div class="timeline-date">July 2020 – May 2024</div>
+          </div>
+          <div class="timeline-company">Liaison International · Full-time</div>
+          <div class="timeline-desc">Led enterprise roadmap strategy for a Salesforce CRM platform serving 400+ university clients. Launched student success dashboards that drove a 15% increase in monthly active users, and drove 75% feature adoption within 60 days of launch. Delivered MVP six months ahead of schedule and grew NPS by 42 points through a scalable customer feedback system.</div>
+          <div class="timeline-tags">
+            <span class="tag">Enterprise SaaS</span>
+            <span class="tag">Salesforce CRM</span>
+            <span class="tag">Go-to-Market</span>
+            <span class="tag">NPS</span>
+            <span class="tag">Edtech</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot past"></div>
+        <div class="timeline-body">
+          <div class="timeline-header">
+            <div class="timeline-role">Implementation Manager → Product Manager</div>
+            <div class="timeline-date">July 2018 – December 2019</div>
+          </div>
+          <div class="timeline-company">Rainforest QA · Full-time</div>
+          <div class="timeline-desc">Reduced QA test plan creation time by 8x for new customers and improved self-onboarding with in-app guided tours that increased retention by 25%. Launched a pay-as-you-go pricing model that shortened the sales cycle by 70% and opened new revenue channels.</div>
+          <div class="timeline-tags">
+            <span class="tag">Onboarding</span>
+            <span class="tag">Pricing Strategy</span>
+            <span class="tag">Retention</span>
+            <span class="tag">Self-Serve</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot past"></div>
+        <div class="timeline-body">
+          <div class="timeline-header">
+            <div class="timeline-role">Senior Customer Success Manager</div>
+            <div class="timeline-date">October 2016 – July 2018</div>
+          </div>
+          <div class="timeline-company">Skai · Full-time</div>
+          <div class="timeline-desc">Oversaw omnichannel marketing strategies generating $27M in annual revenue for enterprise clients including Expedia, Zillow, REI, and Alaska Airlines. Leveraged A/B testing and machine learning to reduce customer acquisition costs by 30%.</div>
+          <div class="timeline-tags">
+            <span class="tag">Enterprise Clients</span>
+            <span class="tag">A/B Testing</span>
+            <span class="tag">Omnichannel</span>
+            <span class="tag">$27M Revenue</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="timeline-item">
+        <div class="timeline-dot past"></div>
+        <div class="timeline-body">
+          <div class="timeline-header">
+            <div class="timeline-role">Account Manager → Senior Account Manager</div>
+            <div class="timeline-date">October 2014 – October 2016</div>
+          </div>
+          <div class="timeline-company">3Q Digital · Full-time</div>
+          <div class="timeline-desc">Managed digital marketing strategy for enterprise and startup accounts. Presented quarterly business reviews to executive stakeholders, translating performance data into actionable recommendations that improved client ROI.</div>
+          <div class="timeline-tags">
+            <span class="tag">Digital Marketing</span>
+            <span class="tag">Executive Comms</span>
+            <span class="tag">Client Strategy</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Skills & Expertise</div>
+    <div class="section-title">What I bring to the table.</div>
+    <div class="skills-grid">
+      <div class="skill-card">
+        <div class="skill-card-icon">📈</div>
+        <div class="skill-card-title">Growth Strategy</div>
+        <div class="skill-card-desc">Designing and executing growth loops, optimizing acquisition funnels, and building retention systems that compound over time.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🗺️</div>
+        <div class="skill-card-title">Product Roadmapping</div>
+        <div class="skill-card-desc">Translating company strategy into a clear, prioritized roadmap that teams are aligned behind and excited to execute.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🔍</div>
+        <div class="skill-card-title">User Research</div>
+        <div class="skill-card-desc">Running qualitative and quantitative research — interviews, surveys, usability tests — to deeply understand user needs and pain points.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">📊</div>
+        <div class="skill-card-title">Data & Analytics</div>
+        <div class="skill-card-desc">Comfortable with SQL, Mixpanel, Amplitude, Looker, and A/B testing platforms. I love finding signals in messy data.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">🤝</div>
+        <div class="skill-card-title">Stakeholder Management</div>
+        <div class="skill-card-desc">Building trust with executives, engineering leads, and business partners — keeping everyone informed and moving in the same direction.</div>
+      </div>
+      <div class="skill-card">
+        <div class="skill-card-icon">⚡</div>
+        <div class="skill-card-title">Agile Execution</div>
+        <div class="skill-card-desc">Experienced in running sprints, writing tight specs, and creating a team culture of fast learning and continuous improvement.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Featured Projects</div>
+    <div class="section-title">Work I'm proud of.</div>
+    <div class="projects-grid">
+
+      <div class="project-card featured">
+        <div>
+          <div class="project-badge">⭐ Featured Project</div>
+          <div class="project-title">Client Portal — Self-Serve Platform Transformation</div>
+          <div class="project-desc">At Omnidian, established the Client Portal as the primary client engagement and data delivery platform — shifting support and service interactions away from manual workflows toward scalable, self-serve experiences. Defined data contracts that now underpin internal BI and analytics, enabling consistent reporting at scale and deepening long-term client stickiness.</div>
+          <div class="timeline-tags" style="margin-bottom: 0;">
+            <span class="tag">Self-Serve Platform</span>
+            <span class="tag">Data Infrastructure</span>
+            <span class="tag">Client Experience</span>
+            <span class="tag">BI & Analytics</span>
+          </div>
+        </div>
+        <div class="project-metrics">
+          <div class="metric">
+            <span class="metric-val">50%</span>
+            <span class="metric-label">Faster Resolution</span>
+          </div>
+          <div class="metric">
+            <span class="metric-val">~20%</span>
+            <span class="metric-label">Velocity Gain</span>
+          </div>
+          <div class="metric">
+            <span class="metric-val">30%</span>
+            <span class="metric-label">Less Manual Tracking</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-badge">Liaison International</div>
+        <div class="project-title">Student Success Dashboards & CRM Launch</div>
+        <div class="project-desc">Launched dashboards enabling university administrators to proactively identify at-risk students using academic, behavioral, and demographic signals. Drove 75% feature adoption among existing customers within 60 days of launch and grew NPS by 42 points through a scalable feedback system.</div>
+        <div class="timeline-tags">
+          <span class="tag">Edtech</span>
+          <span class="tag">Dashboards</span>
+          <span class="tag">+42 NPS</span>
+          <span class="tag">75% Adoption</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-badge">Rainforest QA</div>
+        <div class="project-title">Pay-As-You-Go Pricing & Onboarding Overhaul</div>
+        <div class="project-desc">Launched a pay-as-you-go pricing model that shortened the sales cycle by 70% and opened new revenue channels. Introduced in-app self-guided tours that improved self-onboarding and increased customer retention by 25%, while reducing QA test plan creation time by 8x.</div>
+        <div class="timeline-tags">
+          <span class="tag">Pricing Strategy</span>
+          <span class="tag">Onboarding</span>
+          <span class="tag">70% Faster Sales</span>
+          <span class="tag">+25% Retention</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-wrap">
+    <div class="section-eyebrow">Get In Touch</div>
+    <div class="section-title">Let's build something great.</div>
+    <div class="contact-grid">
+      <div class="contact-text">
+        <p>Whether you're looking to collaborate, explore opportunities, or just want to talk product — I'd love to hear from you. My inbox is always open.</p>
+        <div class="contact-links">
+          <a class="contact-link" href="/cdn-cgi/l/email-protection#d3b9bdb6a6beb2bde6e293b4beb2babffdb0bcbe">
+            <div class="contact-link-icon">✉️</div>
+            <div>
+              <div class="contact-link-title">Send an email</div>
+              <div class="contact-link-sub"><span class="__cf_email__" data-cfemail="553f3b302038343b6064153238343c397b363a38">[email&#160;protected]</span></div>
+            </div>
+          </a>
+          <a class="contact-link" href="https://www.linkedin.com/in/josh-neuman/" target="_blank" rel="noopener">
+            <div class="contact-link-icon">💼</div>
+            <div>
+              <div class="contact-link-title">Connect on LinkedIn</div>
+              <div class="contact-link-sub">linkedin.com/in/josh-neuman</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-quote">
+        <span class="quote-mark">"</span>
+        <div class="quote-text">The best PMs I know are relentlessly curious, deeply empathetic, and always a little impatient to ship.</div>
+        <div class="quote-attr">— A philosophy I live by</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTE
